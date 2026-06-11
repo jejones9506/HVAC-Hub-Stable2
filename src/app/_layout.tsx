@@ -11,7 +11,7 @@ export default function RootLayout() {
   return (
     <Stack
       screenOptions={{
-        headerShown: false, // All screens manage their own headers/titles + dropdown menus (no bottom tabs)
+        headerShown: false, // All screens manage their own headers + dropdown menus (no bottom tabs)
       }}
     />
   );
