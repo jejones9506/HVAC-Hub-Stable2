@@ -1,9 +1,9 @@
 {
   "expo": {
     "name": "HVAC Hub",
-    "slug": "hvac-hub-new",
+    "slug": "hvac-hub-stable2",
     "version": "1.0.0",
-    "description": "The ultimate cross-platform app for HVAC technicians \u2014 from apprentices to masters. Equipment database, AI assistant (with verification), calculators, EPA study, walkthroughs, community knowledge, and admin moderation.",
+    "description": "The ultimate cross-platform app for HVAC technicians — from apprentices to masters. Equipment database, AI assistant (with verification), calculators, EPA study, walkthroughs, community knowledge, and admin moderation.",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "hvachub",
@@ -74,11 +74,11 @@
     },
     "extra": {
       "eas": {
-        "projectId": "e8153dd8-78b6-4778-ac7e-0d4ceafd4dfd"
+        "projectId": "bd0ae36a-46fd-4687-b379-58800ba2c9a6"
       }
     },
     "updates": {
-      "url": "https://u.expo.dev/e8153dd8-78b6-4778-ac7e-0d4ceafd4dfd"
+      "url": "https://u.expo.dev/bd0ae36a-46fd-4687-b379-58800ba2c9a6"
     },
     "runtimeVersion": {
       "policy": "appVersion"
