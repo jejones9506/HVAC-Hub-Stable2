@@ -21,7 +21,22 @@ export default function HomeScreen() {
   } = useHVACStore();
   
   const [showOnboarding, setShowOnboarding] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
   const recentEquipment = equipment.slice(0, 3);
+
+  // FULL list of ALL sections - every page reachable ONLY from this dropdown (no bottom tabs or page links anywhere)
+  const menuItems = [
+    { label: '🏠 Home', route: '/' as const },
+    { label: '🔧 Equipment Hub', route: '/equipment' as const },
+    { label: '📊 Calculators', route: '/calculators' as const },
+    { label: '🤖 AI Assistant', route: '/ai' as const },
+    { label: '📚 EPA Study', route: '/epa' as const },
+    { label: '👤 Profile', route: '/profile' as const },
+    { label: '🛡️ Admin Portal', route: '/admin' as const },
+    { label: '📜 Terms of Service (TOS)', route: '/tos' as const },
+    { label: '📖 HVAC Terminology', route: '/terminology' as const },
+    { label: '🖼️ Educational Diagrams (10)', route: '/diagrams' as const },
+  ];
 
   // Safely re-enabled now that the app launches stably.
   // Shows the modal ONLY the very first time the user opens the app (per install/session).
@@ -58,15 +73,9 @@ export default function HomeScreen() {
           <ThemedView style={styles.header}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
               <ThemedText type="title" style={styles.title}>HVAC Hub</ThemedText>
-              {/* Simple dropdown menu to cycle through pages */}
+              {/* FULL DROPDOWN MENU - all sections accessible ONLY via this (no bottom tabs) */}
               <Pressable 
-                onPress={() => {
-                  const pages = ['/','/equipment','/calculators','/ai','/epa','/profile'];
-                  const labels = ['Home','Equipment','Calculators','AI Assistant','EPA Study','Profile'];
-                  const idx = pages.indexOf(router.pathname || '/');
-                  const nextIdx = (idx + 1) % pages.length;
-                  router.push(pages[nextIdx]);
-                }}
+                onPress={() => setShowMenu(!showMenu)}
                 style={{ padding: 8, backgroundColor: '#1976D2', borderRadius: 6 }}
               >
                 <ThemedText style={{ color: 'white', fontWeight: '600' }}>☰ Menu</ThemedText>
@@ -85,6 +94,31 @@ export default function HomeScreen() {
               </Pressable>
             )}
           </ThemedView>
+
+          {/* Full dropdown menu list (toggles on Menu button press) - dropdown-only navigation for ALL sections */}
+          {showMenu && (
+            <ThemedView style={{ backgroundColor: '#E3F2FD', borderRadius: 8, marginHorizontal: 16, marginBottom: 12, padding: 8, borderWidth: 1, borderColor: '#1976D2' }}>
+              {menuItems.map((item, idx) => (
+                <Pressable
+                  key={idx}
+                  onPress={() => {
+                    setShowMenu(false);
+                    try {
+                      router.push(item.route);
+                    } catch (e) {
+                      console.log('[Menu] nav error (safe):', e);
+                    }
+                  }}
+                  style={{ paddingVertical: 10, paddingHorizontal: 12, borderBottomWidth: idx < menuItems.length - 1 ? 1 : 0, borderBottomColor: '#BBDEFB' }}
+                >
+                  <ThemedText style={{ fontSize: 15, color: '#1565C0', fontWeight: '500' }}>{item.label}</ThemedText>
+                </Pressable>
+              ))}
+              <Pressable onPress={() => setShowMenu(false)} style={{ padding: 8, alignItems: 'center', marginTop: 4 }}>
+                <ThemedText style={{ color: '#666', fontSize: 13 }}>Close Menu</ThemedText>
+              </Pressable>
+            </ThemedView>
+          )}
 
           {/* Quick Stats */}
           <ThemedView style={styles.statsRow}>
@@ -184,7 +218,7 @@ export default function HomeScreen() {
         </ScrollView>
       </SafeAreaView>
 
-      {/* Onboarding modal — safely re-enabled (shows ONLY the very first time the app is opened).
+      {/* Onboarding modal — safely re-enabled (shows ONLY the very first time the app is opened.
           Tapping "Got it" now only closes the local modal (no store call) to prevent the crash. */}
       <Modal visible={showOnboarding} animationType="slide" onRequestClose={closeOnboarding}>
         <SafeAreaView style={{ flex: 1, padding: Spacing.four, backgroundColor: '#fff' }}>
