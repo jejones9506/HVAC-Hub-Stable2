@@ -1,0 +1,87 @@
+{
+  "expo": {
+    "name": "HVAC Hub",
+    "slug": "hvac-hub-new",
+    "version": "1.0.0",
+    "description": "The ultimate cross-platform app for HVAC technicians \u2014 from apprentices to masters. Equipment database, AI assistant (with verification), calculators, EPA study, walkthroughs, community knowledge, and admin moderation.",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "hvachub",
+    "userInterfaceStyle": "automatic",
+    "githubUrl": "https://github.com/your-org/hvac-hub",
+    "ios": {
+      "icon": "./assets/images/icon.png",
+      "bundleIdentifier": "com.hvachub.demo",
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "Allow HVAC Hub to access your camera for scanning QR codes on equipment labels and serial plates.",
+        "NSPhotoLibraryUsageDescription": "Allow HVAC Hub to access your photo library for uploading equipment notes, photos, and videos."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#208AEF",
+        "foregroundImage": "./assets/images/android-icon-foreground.png",
+        "backgroundImage": "./assets/images/android-icon-background.png",
+        "monochromeImage": "./assets/images/android-icon-monochrome.png"
+      },
+      "package": "com.hvachub.demo",
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.RECORD_AUDIO"
+      ],
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "output": "static",
+      "favicon": "./assets/images/favicon.png",
+      "name": "HVAC Hub",
+      "shortName": "HVACHub",
+      "description": "HVAC tools, AI, calculators, and community for technicians."
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#208AEF",
+          "android": {
+            "image": "./assets/images/splash-icon.png",
+            "imageWidth": 76
+          }
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/images/icon.png",
+          "color": "#208AEF",
+          "sounds": [],
+          "mode": "production"
+        }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow HVAC Hub to access your camera for scanning QR codes on equipment labels and serial plates."
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "e8153dd8-78b6-4778-ac7e-0d4ceafd4dfd"
+      }
+    },
+    "updates": {
+      "url": "https://u.expo.dev/e8153dd8-78b6-4778-ac7e-0d4ceafd4dfd"
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    }
+  }
+}
